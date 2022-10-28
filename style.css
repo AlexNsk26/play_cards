@@ -56,6 +56,10 @@
     justify-content: center;
 }
 
+.DifficultyLevel_div_divItem_hover {
+    background-color: rgb(13, 69, 102);
+}
+
 .DifficultyLevel_div_btnStart {
     width: 246px;
     height: 50px;
@@ -93,4 +97,8 @@
     /* Blue / 100 */
 
     color: #0080C1;
+}
+
+.DifficultyLevel_div_h3value_hover {
+    color: #e4f1f8;
 }
