@@ -1,18 +1,18 @@
-const noop = () => { };
-const no_params = {};
-const no_headers = {};
+const noop = () => {};
+const noParams = {};
+const noHeaders = {};
 
 function request({
     method = 'GET',
     url,
     body = '',
-    params = no_params,
+    params = noParams,
     successeCodes = [200],
-    headers = no_headers,
+    headers = noHeaders,
     responseType = 'json',
     requestType = 'json',
     onSuccess = noop,
-    onError = noop
+    onError = noop,
 }) {
     const req = new XMLHttpRequest();
     const urlParams = new URLSearchParams(params);
@@ -29,13 +29,16 @@ function request({
             return;
         }
         onSuccess(target.response);
-    }
+    };
     req.onerror = function () {
         onError('bad_Server');
-    }
+    };
     let dataBody = body;
     if (requestType === 'urlencoded') {
-        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        req.setRequestHeader(
+            'Content-Type',
+            'application/x-www-form-urlencoded'
+        );
         dataBody = new URLSearchParams(body).toString();
     }
     req.send(dataBody);

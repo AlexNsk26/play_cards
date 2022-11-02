@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Play card game</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Play card game</title>
-</head>
-
-<body>
-    <div class="app"></div>
-    <script src="./src/reqest.js"></script>
-    <script src="./src/template-engine.js"></script>
-    <script src="./src/dif_level.js"></script>
-    <script>
-        const app = document.querySelector('.app')
-        const dif_Level = new DifficultyLevel(app);    
-    </script>
-
-</body>
-
+    <body>
+        <div class="app"></div>
+        <script src="./src/reqest.js"></script>
+        <script src="./src/template-engine.js"></script>
+        <script src="./src/dif_level.js"></script>
+        <script>
+            const app = document.querySelector('.app');
+            const dif_Level = new DifficultyLevel(app);
+        </script>
+    </body>
 </html>
