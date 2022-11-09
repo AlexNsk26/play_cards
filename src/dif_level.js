@@ -8,16 +8,16 @@ class DifficultyLevel {
         this.onMouseenter = this.onMouseenter.bind(this);
         this.onMouseleave = this.onMouseleave.bind(this);
         this.renderItems = this.renderItems.bind(this);
-        this.onClickBtn = this.onClickBtn.bind(this);
+        //this.onClickBtn = this.onClickBtn.bind(this);
         this.render();
-        this.btn = this.element.querySelector('.DifficultyLevel_div_btnStart');
+        //this.btn = this.element.querySelector('.difficultyLevelDivBtnStart');
         this.divValue = this.element.querySelector(
             '.DifficultyLevel_div_divItems'
         );
 
         this.addListenerHover();
 
-        this.btn.addEventListener('click', this.onClickBtn);
+        //this.btn.addEventListener('click', this.onClickBtn);
 
         this.divValue.addEventListener('click', this.onClickValue);
         this.divValue.addEventListener('mouseleave', this.renderItems);
@@ -81,9 +81,9 @@ class DifficultyLevel {
             }
         }
     }
-    onClickBtn() {
+    /*    onClickBtn() {
         console.log('Кнопка старт');
-    }
+    } */
     onClickValue(e) {
         localStorage.setItem('DifficultyLevel', e.target.textContent);
         this.renderItems();
@@ -116,65 +116,69 @@ class DifficultyLevel {
 }
 DifficultyLevel.template = {
     tag: 'div',
-    cls: 'DifficultyLevel_div',
-    content: [
-        {
-            tag: 'div',
-            cls: 'DifficultyLevel_div_fortext',
-            content: [
-                {
-                    tag: 'h3',
-                    cls: 'DifficultyLevel_div_h3text',
-                    content: 'Выбери сложность',
-                },
-            ],
-        },
-        {
-            tag: 'div',
-            cls: 'DifficultyLevel_div_divItems',
-            content: [
-                {
-                    tag: 'div',
-                    cls: 'DifficultyLevel_div_divItem',
-                    content: [
-                        {
-                            tag: 'h3',
-                            cls: 'DifficultyLevel_div_h3value',
-                            content: '1',
-                        },
-                    ],
-                },
-                {
-                    tag: 'div',
-                    cls: 'DifficultyLevel_div_divItem',
-                    content: [
-                        {
-                            tag: 'h3',
-                            cls: 'DifficultyLevel_div_h3value',
-                            content: '2',
-                        },
-                    ],
-                },
-                {
-                    tag: 'div',
-                    cls: 'DifficultyLevel_div_divItem',
-                    content: [
-                        {
-                            tag: 'h3',
-                            cls: 'DifficultyLevel_div_h3value',
-                            content: '3',
-                        },
-                    ],
-                },
-            ],
-        },
+    cls: 'playgroundCards',
+    content: {
+        tag: 'div',
+        cls: 'DifficultyLevel_div',
+        content: [
+            {
+                tag: 'div',
+                cls: 'DifficultyLevel_div_fortext',
+                content: [
+                    {
+                        tag: 'h3',
+                        cls: 'DifficultyLevel_div_h3text',
+                        content: 'Выбери сложность',
+                    },
+                ],
+            },
+            {
+                tag: 'div',
+                cls: 'DifficultyLevel_div_divItems',
+                content: [
+                    {
+                        tag: 'div',
+                        cls: 'DifficultyLevel_div_divItem',
+                        content: [
+                            {
+                                tag: 'h3',
+                                cls: 'DifficultyLevel_div_h3value',
+                                content: '1',
+                            },
+                        ],
+                    },
+                    {
+                        tag: 'div',
+                        cls: 'DifficultyLevel_div_divItem',
+                        content: [
+                            {
+                                tag: 'h3',
+                                cls: 'DifficultyLevel_div_h3value',
+                                content: '2',
+                            },
+                        ],
+                    },
+                    {
+                        tag: 'div',
+                        cls: 'DifficultyLevel_div_divItem',
+                        content: [
+                            {
+                                tag: 'h3',
+                                cls: 'DifficultyLevel_div_h3value',
+                                content: '3',
+                            },
+                        ],
+                    },
+                ],
+            },
 
-        {
-            tag: 'button',
-            cls: 'DifficultyLevel_div_btnStart',
-            content: 'Старт!',
-        },
-    ],
+            {
+                tag: 'button',
+                cls: 'difficultyLevelDivBtnStart',
+                content: 'Старт!',
+            },
+        ],
+    },
 };
 DifficultyLevel.templateItems = [
     {

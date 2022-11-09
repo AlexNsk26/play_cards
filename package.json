@@ -23,8 +23,10 @@
     },
     "homepage": "https://github.com/AlexNsk26/play_cards#readme",
     "dependencies": {
-        "http-server": "^14.1.1",
-        "lodash": "4.17.21"
+        "@josephuspaye/timer": "^0.1.1",
+        "http-server": "14.1.1",
+        "lodash": "4.17.21",
+        "vanil-stopwatch-js": "^1.0.1"
     },
     "devDependencies": {
         "axios": "^1.1.3",
