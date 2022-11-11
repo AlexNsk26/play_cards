@@ -1,0 +1,104 @@
+@font-face {
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    src: local('StratosSkyeng'),
+        url(/statosskyeng-v1.001/Desktop_fonts/stratosskyeng-regular.otf)format('otf');
+}
+
+.app {
+    background-color: #004980;
+    height: 98vh;
+    width: 99vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.DifficultyLevel_div {
+    width: 480px;
+    height: 459px;
+    background: #C2F5FF;
+    border-radius: 12px;
+    display: inherit;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.DifficultyLevel_div_fortext {
+    width: 208px;
+}
+
+.DifficultyLevel_div_h3text {
+    color: #004980;
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+.DifficultyLevel_div_divItems {
+    display: inherit;
+    gap: 26px;
+    padding-bottom: 67px;
+}
+
+.DifficultyLevel_div_divItem {
+    width: 96px;
+    height: 98px;
+    background-color: #fff;
+    border-radius: 12px;
+    display: inherit;
+    align-items: center;
+    justify-content: center;
+}
+
+.DifficultyLevel_div_divItem_hover {
+    background-color: rgb(13, 69, 102);
+}
+
+.DifficultyLevel_div_btnStart {
+    width: 246px;
+    height: 50px;
+    background: #7AC100;
+    border-radius: 12px;
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    /* or 133% */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+
+    color: #FFFFFF;
+    border: none;
+
+}
+
+.DifficultyLevel_div_h3value {
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+    /* or 112% */
+
+    /*     display: flex;
+    align-items: center;
+    text-align: center; */
+
+    /* Blue / 100 */
+
+    color: #0080C1;
+}
+
+.DifficultyLevel_div_h3value_hover {
+    color: #e4f1f8;
+}
