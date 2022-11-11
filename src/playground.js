@@ -5,8 +5,8 @@ class Playground {
         }
         this.element = element;
         this.timer = timer;
-        this.suits = ['clubs', 'diamonds', 'hearts', 'spades'];
-        this.ranges = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6'];
+        this.suits = ['1', '2', '3', '4'];
+        this.ranges = ['14', '13', '12', '11', '10', '9', '8', '7', '6'];
         /* this.onClickValue = this.onClickValue.bind(this);
         this.onMouseenter = this.onMouseenter.bind(this);
         this.onMouseleave = this.onMouseleave.bind(this);
@@ -37,7 +37,7 @@ class Playground {
         this.suits.forEach((suit) => {
             this.ranges.forEach((range) => {
                 this.playgroundCardsCol.appendChild(
-                    templateEngine(Playground.frontCard(range, suit))
+                    templateEngine(Playground.frontCard(suit + range))
                 );
             });
         });
@@ -118,53 +118,13 @@ Playground.backCard = {
     cls: 'whiteBGRCard',
     content: { tag: 'div', cls: ['card', 'backCard', 'cardBackColor'] },
 };
-Playground.frontCard = (rang, suit) => {
-    const ObjSuits = { clubs: '♣', diamonds: '♦', spades: '♠', hearts: '♥' };
+Playground.frontCard = (bgiURL) => {
     return {
         tag: 'div',
         cls: 'whiteBGRCard',
-        content: {
-            tag: 'div',
-            cls: 'card',
-            content: [
-                {
-                    tag: 'div',
-                    cls: 'groupValueCard',
-                    content: [
-                        {
-                            tag: 'i',
-                            cls: [suit, 'valueCard'],
-                            content: rang,
-                        },
-                        {
-                            tag: 'i',
-                            cls: [suit, 'valueSuit'],
-                            content: ObjSuits[suit],
-                        },
-                    ],
-                },
-                {
-                    tag: 'i',
-                    cls: [suit, 'centerBigSuit'],
-                    content: ObjSuits[suit],
-                },
-                {
-                    tag: 'div',
-                    cls: ['groupValueCard', 'reverse'],
-                    content: [
-                        {
-                            tag: 'i',
-                            cls: [suit, 'valueCard'],
-                            content: rang,
-                        },
-                        {
-                            tag: 'i',
-                            cls: [suit, 'valueSuit'],
-                            content: ObjSuits[suit],
-                        },
-                    ],
-                },
-            ],
+        attrs: {
+            style: `background-image:url('./img/frontCards/${bgiURL}.svg')`,
+            'data-valueCard': bgiURL,
         },
     };
 };
