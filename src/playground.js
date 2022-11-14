@@ -5,6 +5,8 @@ class Playground {
         }
         this.element = element;
         this.timer = timer;
+        this.timerId = [];
+        this.idTimerInt = [];
         this.suits = ['1', '2', '3', '4'];
         this.ranges = ['14', '13', '12', '11', '10', '9', '8', '7', '6'];
         /* this.onClickValue = this.onClickValue.bind(this);
@@ -13,6 +15,8 @@ class Playground {
         this.renderItems = this.renderItems.bind(this);*/
         this.renderMainGround();
         this.btn = this.element.querySelector('.startAgainBtn');
+        this.timerMin = this.element.querySelector('.valueTimerMin');
+        this.timerSek = this.element.querySelector('.valueTimerSek');
         this.playgroundCardsCol = this.element.querySelector(
             '.playgroundCardsCollection'
         );
@@ -32,16 +36,58 @@ class Playground {
                 templateEngine(Playground.backCard)
             );
         }
+        this.startTimer();
+    }
+    startTimer() {
+        this.timer.start();
+        this.idTimerInt.push(setInterval(this.changeTime.bind(this), 10));
+    }
+    changeTime() {
+        const currMin = Math.trunc(sw.elapsedTime.minutes);
+        const currSek = Math.trunc(sw.elapsedTime.seconds) - currMin * 60;
+        if (
+            !(
+                Number(this.timerMin.textContent) ===
+                Math.trunc(sw.elapsedTime.minutes)
+            )
+        ) {
+            this.timerMin.textContent =
+                currMin < 10 ? '0' + String(currMin) : String(currMin);
+        }
+        if (
+            !(
+                Number(this.timerSek.textContent) ===
+                Math.trunc(sw.elapsedTime.seconds)
+            )
+        ) {
+            this.timerSek.textContent =
+                currSek < 10 ? '0' + String(currSek) : String(currSek);
+        }
     }
     renderFrontGroundCards() {
+        let deckСards = [];
         this.suits.forEach((suit) => {
             this.ranges.forEach((range) => {
-                this.playgroundCardsCol.appendChild(
-                    templateEngine(Playground.frontCard(suit + range))
-                );
+                deckСards.push(suit + range);
             });
         });
-        setTimeout(this.renderBackGroundCards.bind(this), 5000);
+        this.randomaizer(deckСards).forEach((rndCard) => {
+            this.playgroundCardsCol.appendChild(
+                templateEngine(Playground.frontCard(rndCard))
+            );
+        });
+
+        this.timerId.push(
+            setTimeout(this.renderBackGroundCards.bind(this), 5000)
+        );
+    }
+    randomaizer(arrIn) {
+        let rndArrIn = new Set();
+        do {
+            const rndCard = arrIn[Math.round(Math.random() * 35)];
+            rndArrIn.add(rndCard);
+        } while (rndArrIn.size < 36);
+        return rndArrIn;
     }
 }
 
@@ -68,7 +114,7 @@ Playground.mainTemplate = {
                                 },
                                 {
                                     tag: 'p',
-                                    cls: 'valueTimer',
+                                    cls: ['valueTimer', 'valueTimerMin'],
                                     content: '00',
                                 },
                             ],
@@ -93,7 +139,7 @@ Playground.mainTemplate = {
                                 },
                                 {
                                     tag: 'p',
-                                    cls: 'valueTimer',
+                                    cls: ['valueTimer', 'valueTimerSek'],
                                     content: '00',
                                 },
                             ],
