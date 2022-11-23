@@ -1,4 +1,5 @@
-class DifficultyLevel {
+import { templateEngine } from './template-engine';
+export class DifficultyLevel {
     constructor(element) {
         if (!(element instanceof HTMLElement)) {
             throw new Error('передан не HTML элемент');

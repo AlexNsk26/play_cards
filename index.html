@@ -10,25 +10,10 @@
 
     <body>
         <div class="app center"></div>
-        <script src="./src/reqest.js"></script>
-        <script src="./src/template-engine.js"></script>
-        <script src="./node_modules/vanil-stopwatch-js/build/vanil-stopwatch.js"></script>
-        <script src="./src/dif_level.js"></script>
-        <script src="./src/playground.js"></script>
-
-        <script>
-            const app = document.querySelector('.app');
-            const difLevel = new DifficultyLevel(app);
-           
-            // Initialize an instance.
-            const sw = new Stopwatch();
-            let hidePlayground;
-            app.addEventListener('click', getPlayground);
-            function getPlayground(e) {
-                if (e.target.classList.contains('difficultyLevelDivBtnStart')) {
-                    hidePlayground = new Playground(app, sw);
-                }
-            }
-        </script>
+        <script type="module" src="./src/index.js"></script>
+        <script type="module" src="./src/template-engine.js"></script>
+        <script type="module" src="./src/dif_level.js"></script>
+        <script type="module" src="./src/playground.js"></script>
+        <script type="module" src="./src/rusult.js"></script>
     </body>
 </html>
