@@ -1,0 +1,5 @@
+# .prettierignore
+node_modules/
+statosskyeng-v1.001/
+dist/
+webpack.config.js

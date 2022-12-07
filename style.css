@@ -1,8 +1,125 @@
+/* Сбрасываем отступы */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+    margin: 0; /* обнуляем внешние отступы */
+    padding: 0; /* обнуляем внутренние отступы */
+    border: 0; /* убираем бордюры */
+    outline: 0; /* убираем контуры */
+    font-size: 100%; /* задаем базовый размер шрифта, значение по умолчанию = 16px */
+    vertical-align: baseline; /* устанавливаем базовое вертикальное выравнивание */
+    background: transparent; /* устанавливаем фон прозрачным */
+}
+
+body {
+    line-height: 1; /* устанавливаем базовую высоту */
+}
+
+ol,
+ul {
+    list-style: none; /* убираем маркеры для нумерованных и обычных списков */
+}
+
+blockquote,
+q {
+    quotes: none; /* убираем кавычки для цитат */
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+    content: ''; /* убираем */
+    content: none; /* и скрываем генерируемое содержимое */
+}
+
+:focus {
+    outline: 0; /* убираем контуры вокруг ссылок при фокусе */
+}
+
+ins {
+    text-decoration: none; /* убираем подчеркивание для вставленного текста */
+}
+
+del {
+    text-decoration: line-through; /* убираем перечеркивание для удаленного текста */
+}
+
+table {
+    border-collapse: collapse; /* убираем рамки двойной толщины */
+    border-spacing: 0; /* убираем расстояние между ячейками */
+}
+
 @font-face {
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng;
     font-style: normal;
     src: local('StratosSkyeng'),
-        url(/statosskyeng-v1.001/Desktop_fonts/stratosskyeng-regular.otf)format('otf');
+        url('./statosskyeng-v1.001/Desktop_fonts/stratosskyeng-regular.otf')
+            format('otf');
+}
+
+.center {
+    padding-left: calc((99vw - 979px) / 2);
+    padding-right: calc((99vw - 979px) / 2);
 }
 
 .app {
@@ -10,14 +127,33 @@
     height: 98vh;
     width: 99vw;
     display: flex;
-    justify-content: center;
     align-items: center;
+}
+
+.playgroundCards {
+    width: 979px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xxx {
+    display: grid;
+    grid-template: repeat(20, 1fr) / repeat(36, 1fr);
+}
+
+.controlMenu {
+    display: flex;
+    height: 150px;
+    justify-content: space-between;
+    align-items: center;
+    width: 979px;
 }
 
 .DifficultyLevel_div {
     width: 480px;
     height: 459px;
-    background: #C2F5FF;
+    background: #c2f5ff;
     border-radius: 12px;
     display: inherit;
     flex-direction: column;
@@ -31,7 +167,7 @@
 
 .DifficultyLevel_div_h3text {
     color: #004980;
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-size: 40px;
@@ -57,37 +193,59 @@
 }
 
 .DifficultyLevel_div_divItem_hover {
-    background-color: rgb(13, 69, 102);
+    background-color: rgb(13 69 102);
 }
 
-.DifficultyLevel_div_btnStart {
+.is-overflowed {
+    color: red;
+}
+
+.startAgainBtn {
     width: 246px;
     height: 50px;
-    background: #7AC100;
+    background: #7ac100;
     border-radius: 12px;
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
+    border: none /* or 133% */;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #fff;
+}
+
+.difficultyLevelDivBtnStart {
+    width: 246px;
+    height: 50px;
+    background: #7ac100;
+    border-radius: 12px;
+    font-family: StratosSkyeng;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+
     /* or 133% */
 
     display: flex;
     align-items: center;
     justify-content: center;
     font-feature-settings: 'pnum' on, 'lnum' on;
-
-    color: #FFFFFF;
+    color: #fff;
     border: none;
-
 }
 
 .DifficultyLevel_div_h3value {
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-size: 64px;
     line-height: 72px;
+
     /* or 112% */
 
     /*     display: flex;
@@ -96,9 +254,142 @@
 
     /* Blue / 100 */
 
-    color: #0080C1;
+    color: #0080c1;
 }
 
 .DifficultyLevel_div_h3value_hover {
     color: #e4f1f8;
+}
+
+.timer {
+    display: flex;
+    width: 155px;
+    justify-content: space-between;
+    padding-bottom: 23px;
+}
+
+.timerMin {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.timerDim {
+    display: flex;
+    flex-direction: row;
+    gap: 57px;
+}
+
+.labelTimerDim {
+    font-family: StratosSkyeng;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 32px;
+
+    /* identical to box height, or 200% */
+
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #fff;
+}
+
+.timerValue {
+    display: flex;
+    flex-direction: row;
+}
+
+.valueTimer {
+    font-family: StratosSkyeng;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+
+    /* identical to box height, or 112% */
+
+    color: #fff;
+}
+
+.playgroundCardsCollection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    /* display: grid;
+    grid-template-columns: 11;
+    grid-template-rows: 6; */
+}
+
+.whiteBGRCard {
+    width: 95px;
+    height: 133px;
+    background: #fff;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    height: 121px;
+    width: 83px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cardBackColor {
+    background-color: #e4fbff;
+}
+
+i {
+    font-style: normal;
+}
+
+.reverse {
+    transform: rotate(-180deg);
+}
+
+.groupValueCard {
+    display: flex;
+    flex-direction: column;
+}
+
+i.clubs {
+    color: black;
+}
+
+i.diamonds {
+    color: red;
+}
+
+i.hearts {
+    color: red;
+}
+
+i.spades {
+    color: black;
+}
+
+.centerBigSuit {
+    font-size: 30px;
+    text-align: center;
+}
+
+.valueCard {
+    font-family: StratosSkyeng;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.valueSuit {
+    font-size: 14px;
+}
+
+.backCard {
+    background-image: url('./img/BackCard.svg');
 }
