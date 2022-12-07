@@ -393,3 +393,59 @@ i.spades {
 .backCard {
     background-image: url('./img/BackCard.svg');
 }
+
+.appOpacity {
+    background: rgb(0 73 128 / 90%);
+    height: 727px;
+    width: 979px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.finalBoard {
+    width: 480px;
+    height: 459px;
+    background: #c2f5ff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    opacity: 1;
+}
+
+.resultText {
+    font-family: StratosSkyeng;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #004980;
+}
+
+.resultPicDiv {
+    width: 96px;
+    height: 96px;
+}
+
+.ResultTimeText {
+    font-family: StratosSkyeng;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #000;
+}
+
+.ResultTimeDigits {
+    font-family: StratosSkyeng;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+    color: #000;
+}

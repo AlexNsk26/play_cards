@@ -1,6 +1,12 @@
 import { templateEngine } from './template-engine';
 export class DifficultyLevel {
-    constructor(element) {
+    element: HTMLDivElement;
+    divValue: HTMLDivElement;
+    static template: Template;
+    static templateItems: Template[];
+    
+    //type ObjectTemplate = (template:unknown) => Object;
+    constructor(element: HTMLDivElement) {
         if (!(element instanceof HTMLElement)) {
             throw new Error('передан не HTML элемент');
         }
@@ -14,7 +20,7 @@ export class DifficultyLevel {
         //this.btn = this.element.querySelector('.difficultyLevelDivBtnStart');
         this.divValue = this.element.querySelector(
             '.DifficultyLevel_div_divItems'
-        );
+        ) as HTMLDivElement;
 
         this.addListenerHover();
 
@@ -47,7 +53,8 @@ export class DifficultyLevel {
                 const element = findChangeItem[item];
                 if (element.textContent === String(level)) {
                     element.classList.add('DifficultyLevel_div_divItem_hover');
-                    element.firstChild.classList.add(
+                    const childNode = element.firstChild as HTMLElement                   
+                    childNode.classList.add(
                         'DifficultyLevel_div_h3value_hover'
                     );
                 }
@@ -82,15 +89,11 @@ export class DifficultyLevel {
             }
         }
     }
-    /*    onClickBtn() {
-        console.log('Кнопка старт');
-    } */
+
     onClickValue(e) {
         localStorage.setItem('DifficultyLevel', e.target.textContent);
         this.renderItems();
         this.addListenerHoverClick(e.target.textContent);
-        // e.target.removeEventListener('mouseenter', this.onMouseenter);
-        //e.target.firstChild.removeEventListener('mouseleave', this.onMouseleave);
     }
     onMouseenter(e) {
         const findChangeItem = this.divValue.querySelector(
@@ -100,7 +103,8 @@ export class DifficultyLevel {
             findChangeItem.classList.remove(
                 'DifficultyLevel_div_divItem_hover'
             );
-            findChangeItem.firstChild.classList.remove(
+            const childNode = findChangeItem.firstChild as HTMLElement 
+            childNode.classList.remove(
                 'DifficultyLevel_div_h3value_hover'
             );
         }
@@ -115,6 +119,7 @@ export class DifficultyLevel {
         );
     }
 }
+
 DifficultyLevel.template = {
     tag: 'div',
     cls: 'playgroundCards',
