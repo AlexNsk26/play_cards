@@ -8,12 +8,16 @@ const app = document.querySelector('.app') as HTMLDivElement;
 const difLevel = new DifficultyLevel(app);
 
 // Initialize an instance.
-const sw = new Stopwatch();
-let hidePlayground;
-let result;
+const sw: Stopwatch = new Stopwatch();
+let hidePlayground: Playground;
+let result: Result;
 app.addEventListener('click', getPlayground);
-function getPlayground(e) {
-    if (e.target.classList.contains('difficultyLevelDivBtnStart')) {
+function getPlayground(e: Event) {
+    if (
+        (e.target as HTMLElement).classList.contains(
+            'difficultyLevelDivBtnStart'
+        )
+    ) {
         hidePlayground = new Playground(app, sw);
         result = new Result(app);
         hidePlayground.subscribe(result.checkResult);
