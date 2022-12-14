@@ -4,7 +4,7 @@ export class DifficultyLevel {
     divValue: HTMLDivElement;
     static template: Template;
     static templateItems: Template[];
-    
+
     //type ObjectTemplate = (template:unknown) => Object;
     constructor(element: HTMLDivElement) {
         if (!(element instanceof HTMLElement)) {
@@ -44,7 +44,7 @@ export class DifficultyLevel {
         const difLevel = Number(localStorage.getItem('DifficultyLevel'));
         this.checkItemValue(difLevel);
     }
-    checkItemValue(level) {
+    checkItemValue(level: Number) {
         if (level > 0) {
             const findChangeItem = document.querySelectorAll(
                 '.DifficultyLevel_div_divItem'
@@ -53,7 +53,7 @@ export class DifficultyLevel {
                 const element = findChangeItem[item];
                 if (element.textContent === String(level)) {
                     element.classList.add('DifficultyLevel_div_divItem_hover');
-                    const childNode = element.firstChild as HTMLElement                   
+                    const childNode = element.firstChild as HTMLElement;
                     childNode.classList.add(
                         'DifficultyLevel_div_h3value_hover'
                     );
@@ -74,7 +74,7 @@ export class DifficultyLevel {
             );
         }
     }
-    addListenerHoverClick(idItem) {
+    addListenerHoverClick(idItem: String) {
         const childrenDivItems = this.divValue.children;
         for (let item = 0; item < childrenDivItems.length; item++) {
             childrenDivItems[item].addEventListener(
@@ -90,12 +90,17 @@ export class DifficultyLevel {
         }
     }
 
-    onClickValue(e) {
-        localStorage.setItem('DifficultyLevel', e.target.textContent);
+    onClickValue(e: Event) {
+        localStorage.setItem(
+            'DifficultyLevel',
+            (e.target as HTMLElement).textContent as string
+        );
         this.renderItems();
-        this.addListenerHoverClick(e.target.textContent);
+        this.addListenerHoverClick(
+            (e.target as HTMLElement).textContent as string
+        );
     }
-    onMouseenter(e) {
+    onMouseenter(e: Event) {
         const findChangeItem = this.divValue.querySelector(
             '.DifficultyLevel_div_divItem_hover'
         );
@@ -103,18 +108,22 @@ export class DifficultyLevel {
             findChangeItem.classList.remove(
                 'DifficultyLevel_div_divItem_hover'
             );
-            const childNode = findChangeItem.firstChild as HTMLElement 
-            childNode.classList.remove(
-                'DifficultyLevel_div_h3value_hover'
-            );
+            const childNode = findChangeItem.firstChild as HTMLElement;
+            childNode.classList.remove('DifficultyLevel_div_h3value_hover');
         }
-        e.target.classList.add('DifficultyLevel_div_divItem_hover');
-        e.target.firstChild.classList.add('DifficultyLevel_div_h3value_hover');
+        (e.target as HTMLElement).classList.add(
+            'DifficultyLevel_div_divItem_hover'
+        );
+        ((e.target as HTMLElement).firstChild as HTMLElement).classList.add(
+            'DifficultyLevel_div_h3value_hover'
+        );
     }
 
-    onMouseleave(e) {
-        e.target.classList.remove('DifficultyLevel_div_divItem_hover');
-        e.target.firstChild.classList.remove(
+    onMouseleave(e: Event) {
+        (e.target as HTMLElement).classList.remove(
+            'DifficultyLevel_div_divItem_hover'
+        );
+        ((e.target as HTMLElement).firstChild as HTMLElement).classList.remove(
             'DifficultyLevel_div_h3value_hover'
         );
     }

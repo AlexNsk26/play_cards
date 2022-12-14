@@ -8,11 +8,11 @@ export class Playground {
     idTimerInt: NodeJS.Timer[];
     deckСardsRandom: Set<string>;
     result: object[];
-    timer: any;
-    currentTime: { min?: Number; sek?: Number };
+    timer: Stopwatch;
+    currentTime: Time;
     preResult: CardResult;
-    suits: String[];
-    ranges: String[];
+    suits: string[];
+    ranges: string[];
     subscribeFunc: Function[];
     static mainTemplate: Template;
     static backCard(i: Number): Template {
@@ -40,7 +40,7 @@ export class Playground {
     timerMin: HTMLElement;
     timerSek: HTMLElement;
     playgroundCardsCol: HTMLDivElement;
-    constructor(element: HTMLDivElement, timer) {
+    constructor(element: HTMLDivElement, timer: Stopwatch) {
         if (!(element instanceof HTMLElement)) {
             throw new Error('передан не HTML элемент');
         }
@@ -106,9 +106,9 @@ export class Playground {
     subscribe(func: Function) {
         this.subscribeFunc.push(func);
     }
-    clickBackCard(e) {
-        const target = e.target;
-        const indexCard: string = target.dataset.index;
+    clickBackCard(e: Event) {
+        const target = e.target as HTMLElement;
+        const indexCard = target.dataset.index as string;
         const volumeCard: string = Array.from(this.deckСardsRandom.values())[
             Number(indexCard) - 1
         ]; //[...this.deckСardsRandom]
@@ -131,7 +131,7 @@ export class Playground {
             }
         }
     }
-    convertTime(timeObj) {
+    convertTime(timeObj: Time) {
         for (const keyTime in timeObj) {
             const arrTime = String(timeObj[keyTime]).split('');
             if (arrTime.length === 1) {
@@ -150,8 +150,8 @@ export class Playground {
         const currMin = Math.trunc(this.timer.elapsedTime.minutes);
         const currSek =
             Math.trunc(this.timer.elapsedTime.seconds) - currMin * 60;
-        this.currentTime.min = currMin;
-        this.currentTime.sek = currSek;
+        this.currentTime.min = String(currMin);
+        this.currentTime.sek = String(currSek);
         if (currMin === 5) {
             this.subscribeFunc[0](
                 this.result,
@@ -169,13 +169,18 @@ export class Playground {
                 currSek < 10 ? '0' + String(currSek) : String(currSek);
         }
     }
-    renderFrontGroundCards() {
+    compilePack(suits: string[], ranges: string[]): string[] {
         let deckСards: string[] = new Array();
-        this.suits.forEach((suit) => {
-            this.ranges.forEach((range) => {
+        suits.forEach((suit) => {
+            ranges.forEach((range) => {
                 deckСards.push(suit.concat(String(range)));
             });
         });
+        return deckСards;
+    }
+
+    renderFrontGroundCards() {
+        const deckСards = this.compilePack(this.suits, this.ranges);
         this.deckСardsRandom = this.randomaizer(deckСards);
         this.deckСardsRandom.forEach((rndCard) => {
             this.playgroundCardsCol.appendChild(
